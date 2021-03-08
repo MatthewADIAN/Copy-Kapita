@@ -13,7 +13,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import tas.kelompok.tas.entities.rest.Register;
+import tas.kelompok.tas.entities.fromdatabase.FormKepentingan;
+import tas.kelompok.tas.entities.fromdatabase.Pengguna;
+import tas.kelompok.tas.repositories.PenggunaRepository;
 
 /**
  *
@@ -21,20 +23,13 @@ import tas.kelompok.tas.entities.rest.Register;
  */
 @Service
 public class RegisterService {
-     @Autowired
-    RestTemplate restTemplate;
 
-    @Value("${api.uri}")
-    private String uri;
+    @Autowired
+    PenggunaRepository penggunaRepository;
 
-    public boolean register(Register input) {
-        HttpEntity<Register> request = new HttpEntity<>(input, null);
-        ResponseEntity<Boolean> responseEntity = restTemplate.exchange("http://116.254.101.228:8080/ma_test/register",
-                HttpMethod.POST,
-                request,
-                new ParameterizedTypeReference<Boolean>() {
-        }
-        );
-        return responseEntity.getBody();
+    public Pengguna save(Pengguna pengguna) {
+        return penggunaRepository.save(pengguna);
     }
+
+    
 }

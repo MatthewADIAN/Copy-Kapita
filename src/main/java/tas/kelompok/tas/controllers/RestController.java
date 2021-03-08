@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import tas.kelompok.tas.entities.fromdatabase.Pengguna;
 import tas.kelompok.tas.services.LoginRestService;
 import tas.kelompok.tas.entities.rest.LoginInput;
 import tas.kelompok.tas.entities.rest.LoginOutput;
@@ -23,7 +24,6 @@ import tas.kelompok.tas.entities.rest.ProfileContact;
 import tas.kelompok.tas.entities.rest.ProfileOccupation;
 import tas.kelompok.tas.entities.rest.ProfileEducation;
 import tas.kelompok.tas.services.RegisterService;
-import tas.kelompok.tas.entities.rest.Register;
 import tas.kelompok.tas.services.PenggunaService;
 
 /**
@@ -40,6 +40,7 @@ public class RestController {
     
     
     String id;
+
     
     @GetMapping("login")
     public String index(Model model) {
@@ -144,14 +145,15 @@ public class RestController {
 
     @GetMapping("/register")
     public String registerindex(Model model) {
-        model.addAttribute("register", new Register());
+        model.addAttribute("register", new Pengguna());
         return "register";
     }
 
     @PostMapping("/register")
-    public String register(Register input) {
-        System.out.println(input);
-        System.out.println(RegisterService.register(input));
+    public String register(Pengguna input) {
+        //System.out.println(input);
+        //System.out.println(RegisterService.register(input));
+        RegisterService.save(input);
         return "index";
     }
 }

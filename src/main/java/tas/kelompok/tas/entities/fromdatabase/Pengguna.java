@@ -6,22 +6,18 @@
 package tas.kelompok.tas.entities.fromdatabase;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author USER
+ * @author Matthew
  */
 @Entity
 @Table(name = "pengguna")
@@ -30,7 +26,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Pengguna.findAll", query = "SELECT p FROM Pengguna p")
     , @NamedQuery(name = "Pengguna.findByIDPengguna", query = "SELECT p FROM Pengguna p WHERE p.iDPengguna = :iDPengguna")
     , @NamedQuery(name = "Pengguna.findByEmail", query = "SELECT p FROM Pengguna p WHERE p.email = :email")
-    , @NamedQuery(name = "Pengguna.findByNama", query = "SELECT p FROM Pengguna p WHERE p.nama = :nama")})
+    , @NamedQuery(name = "Pengguna.findByNama", query = "SELECT p FROM Pengguna p WHERE p.nama = :nama")
+    , @NamedQuery(name = "Pengguna.findByPassword", query = "SELECT p FROM Pengguna p WHERE p.password = :password")
+    , @NamedQuery(name = "Pengguna.findByTelp", query = "SELECT p FROM Pengguna p WHERE p.telp = :telp")})
 public class Pengguna implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,10 +42,12 @@ public class Pengguna implements Serializable {
     @Basic(optional = false)
     @Column(name = "nama")
     private String nama;
-    @OneToMany(mappedBy = "idAdmin", fetch = FetchType.LAZY)
-    private List<FormKepentingan> formKepentinganList;
-    @OneToMany(mappedBy = "idMahasiswa", fetch = FetchType.LAZY)
-    private List<FormKepentingan> formKepentinganList1;
+    @Basic(optional = false)
+    @Column(name = "password")
+    private String password;
+    @Basic(optional = false)
+    @Column(name = "telp")
+    private String telp;
 
     public Pengguna() {
     }
@@ -56,10 +56,12 @@ public class Pengguna implements Serializable {
         this.iDPengguna = iDPengguna;
     }
 
-    public Pengguna(String iDPengguna, String email, String nama) {
+    public Pengguna(String iDPengguna, String email, String nama, String password, String telp) {
         this.iDPengguna = iDPengguna;
         this.email = email;
         this.nama = nama;
+        this.password = password;
+        this.telp = telp;
     }
 
     public String getIDPengguna() {
@@ -86,22 +88,20 @@ public class Pengguna implements Serializable {
         this.nama = nama;
     }
 
-    @XmlTransient
-    public List<FormKepentingan> getFormKepentinganList() {
-        return formKepentinganList;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFormKepentinganList(List<FormKepentingan> formKepentinganList) {
-        this.formKepentinganList = formKepentinganList;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @XmlTransient
-    public List<FormKepentingan> getFormKepentinganList1() {
-        return formKepentinganList1;
+    public String getTelp() {
+        return telp;
     }
 
-    public void setFormKepentinganList1(List<FormKepentingan> formKepentinganList1) {
-        this.formKepentinganList1 = formKepentinganList1;
+    public void setTelp(String telp) {
+        this.telp = telp;
     }
 
     @Override
