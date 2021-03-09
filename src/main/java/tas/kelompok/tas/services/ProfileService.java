@@ -39,6 +39,9 @@ public class ProfileService {
         return penggunaRepository.findById(id).get();
     }
     
+    
+    
+    
 //    public ProfileInfo getProfileInfo(String id) {
 //        ProfileInfo result;
 //        Map<String, String> param = new HashMap<>();

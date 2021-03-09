@@ -38,6 +38,7 @@ public class RestController {
     @Autowired
     LoginRestService service;
     PenggunaService penggunaService;
+    ProfileService profileService;
     PenggunaRepository penggunaRepo;
 
     String id;
@@ -55,7 +56,7 @@ public class RestController {
         boolean cekLogin;
         String kembalian;
         cekLogin = service.getByEmail(email, password);
-        //id = penggunaRepo.findIdByEmail(email);
+        
         if (cekLogin){
             kembalian = "redirect:/";
             System.out.println("berhasil");
@@ -67,8 +68,7 @@ public class RestController {
         return kembalian;
     }
 //======================================Profile===========================================
-    @Autowired
-    ProfileService profileService;
+   
 
     @GetMapping("")
     public String profileBasicLearner(Model model) {
@@ -148,20 +148,20 @@ public class RestController {
 //        return "redirect:/education/";
 //    }
 ////======================================Register===========================================
-//    @Autowired
-//    RegisterService RegisterService;
-//
-//    @GetMapping("/register")
-//    public String registerindex(Model model) {
-//        model.addAttribute("register", new Pengguna());
-//        return "register";
-//    }
-//
-//    @PostMapping("/register")
-//    public String register(Pengguna input) {
-//        //System.out.println(input);
-//        //System.out.println(RegisterService.register(input));
-//        RegisterService.save(input);
-//        return "index";
-//    }
+    @Autowired
+    RegisterService RegisterService;
+
+    @GetMapping("/register")
+    public String registerindex(Model model) {
+        model.addAttribute("register", new Pengguna());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(Pengguna input) {
+        //System.out.println(input);
+        //System.out.println(RegisterService.register(input));
+        RegisterService.save(input);
+        return "login";
+    }
 }
