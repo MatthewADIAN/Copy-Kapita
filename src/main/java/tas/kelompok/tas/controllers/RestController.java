@@ -57,7 +57,13 @@ public class RestController {
         String kembalian;
         cekLogin = service.getByEmail(email, password);
         if (email.equals("672018048@student.uksw.edu")) {
-            kembalian = "redirect:/admin";
+            if (cekLogin) {
+                kembalian = "redirect:/admin";
+                System.out.println("berhasil");
+            } else {
+                kembalian = "redirect:/login";
+                System.out.println("Gagal");
+            }
         } else {
             if (cekLogin) {
                 kembalian = "redirect:/";
@@ -76,7 +82,7 @@ public class RestController {
     public String profileBasicLearner(Model model) {
         //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //LoginOutput output = (LoginOutput) authentication.getPrincipal();
-        //model.addAttribute("profile", profileService.getById(id));
+        //model.addAttribute("profile", profileService.getById("USER"));
         //model.addAttribute("idForm", output.getUser().getId());
         //System.out.println(profileService.getProfileInfo(id));
         //System.out.println(profileService.listLogin(id));
