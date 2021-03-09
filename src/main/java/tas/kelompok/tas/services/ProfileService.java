@@ -39,6 +39,10 @@ public class ProfileService {
         return penggunaRepository.findById(id).get();
     }
     
+    public String getIdByEmail(String email){
+        return penggunaRepository.findIdByEmail(email);
+    }
+    
     
     
     

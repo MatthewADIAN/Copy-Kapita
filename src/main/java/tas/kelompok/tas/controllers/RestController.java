@@ -56,19 +56,21 @@ public class RestController {
         boolean cekLogin;
         String kembalian;
         cekLogin = service.getByEmail(email, password);
-        
-        if (cekLogin){
-            kembalian = "redirect:/";
-            System.out.println("berhasil");
+        if (email.equals("672018048@student.uksw.edu")) {
+            kembalian = "redirect:/admin";
         } else {
-            kembalian = "redirect:/login";
-            System.out.println("Gagal");
+            if (cekLogin) {
+                kembalian = "redirect:/";
+                System.out.println("berhasil");
+            } else {
+                kembalian = "redirect:/login";
+                System.out.println("Gagal");
+            }
         }
-        
+
         return kembalian;
     }
 //======================================Profile===========================================
-   
 
     @GetMapping("")
     public String profileBasicLearner(Model model) {
@@ -81,13 +83,13 @@ public class RestController {
         return "profile_basic_learner";
     }
 
-//    @GetMapping("admin")
-//    public String profileBasicAdmin(Model model) {
-//        model.addAttribute("profile", profileService.getProfileInfo(id));
-//        System.out.println(profileService.getProfileInfo(id));
-//        System.out.println(profileService.listLogin(id));
-//        return "profile_basic_admin";
-//    }
+    @GetMapping("admin")
+    public String profileBasicAdmin(Model model) {
+        //model.addAttribute("profile", profileService.getProfileInfo(id));
+        //System.out.println(profileService.getProfileInfo(id));
+        //System.out.println(profileService.listLogin(id));
+        return "profile_basic_admin";
+    }
 //
 //    @GetMapping("/address/")
 //    public String profileAddress(Model model) {
