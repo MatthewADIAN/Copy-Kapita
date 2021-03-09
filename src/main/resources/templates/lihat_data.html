@@ -325,19 +325,21 @@
         </nav>
         <br>
     <center><h2>Lihat Data</h2></center>
+    
     <div class="container">
         <div class="row">
             <div class="col-sm">
                 <a class="btn btn-info" th:href="@{/formkepentingan/formmasuk/menunggu}" role="button">Formulir Masuk</a><br>
             </div>
             <div class="col-sm">
-                <!-- blank -->
+                
             </div>
             <div class="col-2">
-                <!-- blank -->
+                
             </div>
         </div>
         <br>
+        
         <table border="1" class="table table-striped table-dark">
             <thead>
                 <tr>
@@ -349,17 +351,20 @@
             <tbody>
 
                 <tr th:each="as : ${lihatDataTabel}">
-
+                    
                     <td th:text="${as.idForm.idMahasiswa.nama}"></td>
                     <td th:text="${as.suhuTubuh}"></td>
                     <!--<td th:text="${as.konfirmasiSuhu}"></td>-->
                     <td  th:if="${as.konfirmasiSuhu} == true">Suhu Memenuhi</td>
                     <td  th:if="${as.konfirmasiSuhu} == false">Suhu Tidak Memenuhi</td>
+                    
                 </tr>
 
             </tbody>
         </table>
+       
     </div>
+    
     <div class="footer" style="background-color: #f8f9fb;">
         <p style="color:black;">© 2020 Copyright: 
             <a>Ivan,Matthew and Deli</a>
