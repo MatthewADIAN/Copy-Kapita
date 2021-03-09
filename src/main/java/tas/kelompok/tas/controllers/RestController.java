@@ -6,8 +6,8 @@
 package tas.kelompok.tas.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,26 +37,32 @@ public class RestController {
     @Autowired
     LoginRestService service;
     PenggunaService penggunaService;
-    
-    
+
     String id;
 
-    
     @GetMapping("login")
     public String index(Model model) {
         model.addAttribute("logininput", new LoginInput());
-        LoginInput input = new LoginInput();
-        input.setEmail("");
+        //LoginInput input = new LoginInput();
+        //input.setEmail("");
         return "login";
     }
 
-    @PostMapping("/login_execute")
-    public String login(LoginInput input) {
-        System.out.println(input);
-        System.out.println(service.login(input));
-        id= service.getLoginId(service.login(input));
-        System.out.println(id);
-        return "redirect:/profile/";
+    @GetMapping(path = "/loginProcess")
+    public String loginProcess(Model model, @RequestParam String email, @RequestParam String password) {
+        boolean cekLogin;
+        String kembalian;
+        cekLogin = service.getByEmail(email, password);
+        
+        if (cekLogin){
+            kembalian = "redirect:/";
+            System.out.println("berhasil");
+        } else {
+            kembalian = "redirect:/login";
+            System.out.println("Gagal");
+        }
+        
+        return kembalian;
     }
 //======================================Profile===========================================
     @Autowired
@@ -64,15 +70,15 @@ public class RestController {
 
     @GetMapping("")
     public String profileBasicLearner(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LoginOutput output = (LoginOutput) authentication.getPrincipal();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //LoginOutput output = (LoginOutput) authentication.getPrincipal();
         model.addAttribute("profile", profileService.getProfileInfo(id));
-        model.addAttribute("idForm", output.getUser().getId());
-        System.out.println(profileService.getProfileInfo(id));
-        System.out.println(profileService.listLogin(id));
+        //model.addAttribute("idForm", output.getUser().getId());
+        //System.out.println(profileService.getProfileInfo(id));
+        //System.out.println(profileService.listLogin(id));
         return "profile_basic_learner";
     }
-    
+
     @GetMapping("admin")
     public String profileBasicAdmin(Model model) {
         model.addAttribute("profile", profileService.getProfileInfo(id));

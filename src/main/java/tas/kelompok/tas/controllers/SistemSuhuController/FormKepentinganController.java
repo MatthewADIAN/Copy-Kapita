@@ -7,8 +7,8 @@ package tas.kelompok.tas.controllers.SistemSuhuController;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,10 +40,10 @@ public class FormKepentinganController {
 
     @GetMapping("")
     public String pengguna(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LoginOutput output = (LoginOutput) authentication.getPrincipal();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //LoginOutput output = (LoginOutput) authentication.getPrincipal();
         model.addAttribute("kepentinganForm", new FormKepentingan());
-        model.addAttribute("idForm", output.getUser().getId());
+        //model.addAttribute("idForm", output.getUser().getId());
         return "formkepentingan";
     }
 
@@ -84,10 +84,10 @@ public class FormKepentinganController {
 
     @GetMapping("statusmahasiswa/{id_mahasiswa}")
     public String formStatusMahasiswa(Model model, @PathVariable String id_mahasiswa) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LoginOutput output = (LoginOutput) authentication.getPrincipal();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //LoginOutput output = (LoginOutput) authentication.getPrincipal();
         model.addAttribute("statusform", formKepentinganService.getForUser(id_mahasiswa));
-        model.addAttribute("idForm", output.getUser().getId());
+        //model.addAttribute("idForm", output.getUser().getId());
         return "status_mahasiswa";
     }
 

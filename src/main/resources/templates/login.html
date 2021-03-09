@@ -331,7 +331,7 @@ and open the template in the editor.
                     <br>
                     <img src="https://www.flaticon.com/svg/static/icons/svg/2927/2927252.svg" style="width:50px"/>
                     <h1 style="text-align: center">Sistem Suhu Tubuh </h1>
-                   
+
                     <br>
                 </div>
                 <div class="container">
@@ -340,12 +340,13 @@ and open the template in the editor.
                             <!--kosong awas-->
                         </div>
                         <div class="col-md-auto">
-                            <form th:action="@{/login_execute}" th:object="${logininput}" method="POST">
+                            <form action="/loginProcess" method="get">
+
                                 <div class="col-xs-4">
-                                    <input type="text" id="password" th:field="*{email}" placeholder="login" class="form-control input-lg fadeIn second" name="login"><br><br>
+                                    <label for="idSearch">Email : </label><input type="text" id="idSearch" name="email"> <br><br>
                                 </div>
                                 <div class="col-xs-2">
-                                    <input type="password"  id="password" th:field="*{password}" placeholder="password" class="form-control input-sm text-center fadeIn third " name="login"><br><br>
+                                    <label for="idSearch">Password : </label><input type="text" id="idSearch" name="password"> <br><br>
                                 </div>
                                 <input type="submit" value="Log In" class="fadeIn fourth">
                             </form>

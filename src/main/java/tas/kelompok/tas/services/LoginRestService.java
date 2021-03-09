@@ -15,9 +15,9 @@ import org.springframework.web.client.RestTemplate;
 import tas.kelompok.tas.entities.rest.LoginInput;
 import tas.kelompok.tas.entities.rest.LoginOutput;
 import org.springframework.http.ResponseEntity;
+import tas.kelompok.tas.repositories.PenggunaRepository;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
-
 
 /**
  *
@@ -27,23 +27,21 @@ import org.springframework.http.ResponseEntity;
 public class LoginRestService {
 
     @Autowired
-    RestTemplate restTemplate;
+    PenggunaRepository penggunaRepository;
 
-    @Value("${api.uri}")
-    private String uri;
-
-    public LoginOutput login(LoginInput input) {
-        HttpEntity<LoginInput> request = new HttpEntity<>(input, null);
-        ResponseEntity<LoginOutput> responseEntity = restTemplate.exchange(uri + "login",
-                HttpMethod.POST,
-                request,
-                new ParameterizedTypeReference<LoginOutput>() {
+    public Boolean getByEmail(String emailHtmlParam, String passwordHtmlParam) {
+        boolean testTrue = true;
+        String passwordDatabase = penggunaRepository.findByEmail(emailHtmlParam);
+        String passwordHtml = passwordHtmlParam;
+        if (passwordDatabase.equals(passwordHtml)) {
+            testTrue = true;
+        } else {
+            testTrue = false;
         }
-        );
-        return responseEntity.getBody();
+        return testTrue;
     }
-    
-    public String getLoginId(LoginOutput output){
+
+    public String getLoginId(LoginOutput output) {
         return output.getUser().getId();
     }
 

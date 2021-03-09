@@ -6,6 +6,8 @@
 package tas.kelompok.tas.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import tas.kelompok.tas.entities.fromdatabase.Pengguna;
 
 /**
@@ -13,5 +15,7 @@ import tas.kelompok.tas.entities.fromdatabase.Pengguna;
  * @author USER
  */
 public interface PenggunaRepository extends JpaRepository<Pengguna, String> {
-    
+
+    @Query(value = "SELECT password FROM pengguna WHERE email = :email", nativeQuery = true)
+    String findByEmail(@Param("email") String email);
 }

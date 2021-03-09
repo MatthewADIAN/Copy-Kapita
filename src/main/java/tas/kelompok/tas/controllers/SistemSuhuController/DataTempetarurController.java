@@ -6,8 +6,8 @@
 package tas.kelompok.tas.controllers.SistemSuhuController;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,10 +39,10 @@ public class DataTempetarurController {
 
     @GetMapping("suhumahasiswa/{id_mahasiswa}")
     public String dataSuhuMahasiswa(Model model, @PathVariable String id_mahasiswa) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LoginOutput output = (LoginOutput) authentication.getPrincipal();
+       // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //LoginOutput output = (LoginOutput) authentication.getPrincipal();
         model.addAttribute("lihatDataTabel", dataTemperaturService.getforUser(id_mahasiswa));
-        model.addAttribute("idForm", output.getUser().getId());
+       // model.addAttribute("idForm", output.getUser().getId());
         return "lihat_suhu_mahasiswa";
     }
 

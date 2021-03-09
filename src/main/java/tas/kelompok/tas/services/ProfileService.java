@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tas.kelompok.tas.entities.fromdatabase.Pengguna;
@@ -118,13 +118,13 @@ public class ProfileService {
 
     public String getUserId() {
         Pengguna pengguna = new Pengguna();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LoginOutput output = (LoginOutput) authentication.getPrincipal();
-        pengguna.setNama(output.getUser().getName());
-        pengguna.setIDPengguna(output.getUser().getId());
-        pengguna.setEmail(output.getUser().getEmail());
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //LoginOutput output = (LoginOutput) authentication.getPrincipal();
+       // pengguna.setNama(output.getUser().getName());
+        //pengguna.setIDPengguna(output.getUser().getId());
+        //pengguna.setEmail(output.getUser().getEmail());
         penggunaservice.save(pengguna);
-        return output.getUser().getId();
+        return "test";
     }
 
     //=============================PER SAVE AN DUNIAWI========================================
