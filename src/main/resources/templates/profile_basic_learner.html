@@ -35,6 +35,7 @@ and open the template in the editor.
                     <li class="nav-item active">
                         <a class="nav-link">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <!--
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/formkepentingan}">Input Formulir</a>
                     </li>
@@ -44,7 +45,7 @@ and open the template in the editor.
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{|/lihatdata/suhumahasiswa/${idForm}|}">Cek Konfirmasi Suhu</a>
                     </li>
-
+                    -->
                     <!--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown
@@ -56,9 +57,11 @@ and open the template in the editor.
                             <a class="dropdown-item" href="http://localhost:8084/education/">Education</a>
                         </div>
                     </li>-->
+                    <!--
                     <li class="nav-item">
                         <a class="nav-link" href="http://localhost:8084/logout">Logout<span class="sr-only">(current)</span></a>
                     </li>
+                    -->
                 </ul>
             </div>
         </nav>
@@ -79,26 +82,21 @@ and open the template in the editor.
             </div>
             <br>
             <table border="1" class="table table-striped table-dark">
+                <!--
                 <tr th:each="as : ${profile}">
                     <td>ID</td>
-                    <td th:text="${as.id}"></td>
+                    <td th:text="${as.iDPengguna}"></td>
                 </tr>
                 <tr th:each="as : ${profile}">
-                    <td>NAME</td>
-                    <td th:text="${as.name}"></td>
+                    <td>NAMA</td>
+                    <td th:text="${as.nama}"></td>
                 </tr>
-                <tr th:each="as : ${profile}">
-                    <td>BIRTHDATE</td>
-                    <td th:text="${as.birthDate}"></td>
-                </tr>
-                <tr th:each="as : ${profile}">
-                    <td>GENDER</td>
-                    <td th:text="${as.gender}"></td>
-                </tr>
+               
                 <tr th:each="as : ${profile}">
                     <td>EMAIL</td>
                     <td th:text="${as.email}"></td>
                 </tr>
+                -->
             </table>
         </div>
         <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">

@@ -23,6 +23,7 @@ import tas.kelompok.tas.entities.rest.ProfileAddress;
 import tas.kelompok.tas.entities.rest.ProfileContact;
 import tas.kelompok.tas.entities.rest.ProfileOccupation;
 import tas.kelompok.tas.entities.rest.ProfileEducation;
+import tas.kelompok.tas.repositories.PenggunaRepository;
 import tas.kelompok.tas.services.RegisterService;
 import tas.kelompok.tas.services.PenggunaService;
 
@@ -37,6 +38,7 @@ public class RestController {
     @Autowired
     LoginRestService service;
     PenggunaService penggunaService;
+    PenggunaRepository penggunaRepo;
 
     String id;
 
@@ -53,7 +55,7 @@ public class RestController {
         boolean cekLogin;
         String kembalian;
         cekLogin = service.getByEmail(email, password);
-        
+        //id = penggunaRepo.findIdByEmail(email);
         if (cekLogin){
             kembalian = "redirect:/";
             System.out.println("berhasil");
@@ -72,94 +74,94 @@ public class RestController {
     public String profileBasicLearner(Model model) {
         //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //LoginOutput output = (LoginOutput) authentication.getPrincipal();
-        model.addAttribute("profile", profileService.getById(id));
+        //model.addAttribute("profile", profileService.getById(id));
         //model.addAttribute("idForm", output.getUser().getId());
         //System.out.println(profileService.getProfileInfo(id));
         //System.out.println(profileService.listLogin(id));
         return "profile_basic_learner";
     }
 
-    @GetMapping("admin")
-    public String profileBasicAdmin(Model model) {
-        model.addAttribute("profile", profileService.getProfileInfo(id));
-        System.out.println(profileService.getProfileInfo(id));
-        System.out.println(profileService.listLogin(id));
-        return "profile_basic_admin";
-    }
-
-    @GetMapping("/address/")
-    public String profileAddress(Model model) {
-        model.addAttribute("address", profileService.getProfileAddress(id));
-        System.out.println(profileService.getProfileAddress(id));
-        return "profile_address";
-    }
-
-    @GetMapping("/contact/")
-    public String profilecontact(Model model) {
-        model.addAttribute("contact", profileService.getProfileContact(id));
-        System.out.println(profileService.getProfileContact(id));
-        return "profile_contact";
-    }
-
-    @GetMapping("/occupation/")
-    public String profileOccupation(Model model) {
-        model.addAttribute("occupation", profileService.getProfileOccupation(id));
-        System.out.println(profileService.getProfileOccupation(id));
-        return "profile_occupation";
-    }
-
-    @GetMapping("/education/")
-    public String profileEducation(Model model) {
-        model.addAttribute("education", profileService.getProfileEducation(id));
-        System.out.println(profileService.getProfileEducation(id));
-        return "profile_education";
-    }
-    //=================Per Save An duniawi==================
-
-    @PostMapping("/saveinfo")
-    public String save(ProfileInfo input) {
-        profileService.updateProfileBasic(input);
-        return "redirect:/";
-    }
-
-    @PostMapping("/saveaddress")
-    public String save(ProfileAddress input) {
-        profileService.updateProfileAddress(input);
-        return "redirect:/address/";
-    }
-
-    @PostMapping("/savecontact")
-    public String save(ProfileContact input) {
-        profileService.updateProfileContact(input);
-        return "redirect:/contact/";
-    }
-
-    @PostMapping("/saveoccupation")
-    public String save(ProfileOccupation input) {
-        profileService.updateProfileOccupation(input);
-        return "redirect:/occupation/";
-    }
-
-    @PostMapping("/saveeducation")
-    public String save(ProfileEducation input) {
-        profileService.updateProfileEducation(input);
-        return "redirect:/education/";
-    }
-//======================================Register===========================================
-    @Autowired
-    RegisterService RegisterService;
-
-    @GetMapping("/register")
-    public String registerindex(Model model) {
-        model.addAttribute("register", new Pengguna());
-        return "register";
-    }
-
-    @PostMapping("/register")
-    public String register(Pengguna input) {
-        //System.out.println(input);
-        //System.out.println(RegisterService.register(input));
-        RegisterService.save(input);
-        return "index";
-    }
+//    @GetMapping("admin")
+//    public String profileBasicAdmin(Model model) {
+//        model.addAttribute("profile", profileService.getProfileInfo(id));
+//        System.out.println(profileService.getProfileInfo(id));
+//        System.out.println(profileService.listLogin(id));
+//        return "profile_basic_admin";
+//    }
+//
+//    @GetMapping("/address/")
+//    public String profileAddress(Model model) {
+//        model.addAttribute("address", profileService.getProfileAddress(id));
+//        System.out.println(profileService.getProfileAddress(id));
+//        return "profile_address";
+//    }
+//
+//    @GetMapping("/contact/")
+//    public String profilecontact(Model model) {
+//        model.addAttribute("contact", profileService.getProfileContact(id));
+//        System.out.println(profileService.getProfileContact(id));
+//        return "profile_contact";
+//    }
+//
+//    @GetMapping("/occupation/")
+//    public String profileOccupation(Model model) {
+//        model.addAttribute("occupation", profileService.getProfileOccupation(id));
+//        System.out.println(profileService.getProfileOccupation(id));
+//        return "profile_occupation";
+//    }
+//
+//    @GetMapping("/education/")
+//    public String profileEducation(Model model) {
+//        model.addAttribute("education", profileService.getProfileEducation(id));
+//        System.out.println(profileService.getProfileEducation(id));
+//        return "profile_education";
+//    }
+//    //=================Per Save An duniawi==================
+//
+//    @PostMapping("/saveinfo")
+//    public String save(ProfileInfo input) {
+//        profileService.updateProfileBasic(input);
+//        return "redirect:/";
+//    }
+//
+//    @PostMapping("/saveaddress")
+//    public String save(ProfileAddress input) {
+//        profileService.updateProfileAddress(input);
+//        return "redirect:/address/";
+//    }
+//
+//    @PostMapping("/savecontact")
+//    public String save(ProfileContact input) {
+//        profileService.updateProfileContact(input);
+//        return "redirect:/contact/";
+//    }
+//
+//    @PostMapping("/saveoccupation")
+//    public String save(ProfileOccupation input) {
+//        profileService.updateProfileOccupation(input);
+//        return "redirect:/occupation/";
+//    }
+//
+//    @PostMapping("/saveeducation")
+//    public String save(ProfileEducation input) {
+//        profileService.updateProfileEducation(input);
+//        return "redirect:/education/";
+//    }
+////======================================Register===========================================
+//    @Autowired
+//    RegisterService RegisterService;
+//
+//    @GetMapping("/register")
+//    public String registerindex(Model model) {
+//        model.addAttribute("register", new Pengguna());
+//        return "register";
+//    }
+//
+//    @PostMapping("/register")
+//    public String register(Pengguna input) {
+//        //System.out.println(input);
+//        //System.out.println(RegisterService.register(input));
+//        RegisterService.save(input);
+//        return "index";
+//    }
 }

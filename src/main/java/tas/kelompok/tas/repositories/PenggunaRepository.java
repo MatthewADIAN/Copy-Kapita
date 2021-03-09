@@ -18,4 +18,7 @@ public interface PenggunaRepository extends JpaRepository<Pengguna, String> {
 
     @Query(value = "SELECT password FROM pengguna WHERE email = :email", nativeQuery = true)
     String findByEmail(@Param("email") String email);
+    
+    @Query(value = "SELECT ID_Pengguna FROM pengguna WHERE email = :email", nativeQuery = true)
+    String findIdByEmail(@Param("email") String email);
 }
