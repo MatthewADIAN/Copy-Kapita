@@ -72,7 +72,7 @@ public class RestController {
     public String profileBasicLearner(Model model) {
         //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //LoginOutput output = (LoginOutput) authentication.getPrincipal();
-        model.addAttribute("profile", profileService.getProfileInfo(id));
+        model.addAttribute("profile", profileService.getById(id));
         //model.addAttribute("idForm", output.getUser().getId());
         //System.out.println(profileService.getProfileInfo(id));
         //System.out.println(profileService.listLogin(id));
